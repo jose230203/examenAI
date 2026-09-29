@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Resumen: Inteligencia Artificial y Lógica</title>
+  <style>
+    /* CSS: Estilos Generales y Diseño */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-color: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Grid de Artículos */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background-color: #cbd5e1;
+    }
+
+    .card-content {
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tag {
+      align-self: flex-start;
+      background-color: #dbeafe;
+      color: var(--secondary-color);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .card-summary {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+
+    /* Estilos del Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+      padding: 1.5rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-body ul {
+      margin-left: 1.25rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-body p {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Resumen General del Curso: Inteligencia Artificial</h1>
+    <p>Síntesis visual y conceptual de los temas abordados (28 jul - 21 sep)</p>
+  </header>
+
+  <main class="container">
+    <div class="grid" id="cards-container">
+      <!-- Secciones generadas dinámicamente con JS -->
+    </div>
+  </main>
+
+  <!-- Ventana Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-modal">&times;</span>
+      <h2 id="modal-title" style="margin-bottom: 0.5rem;"></h2>
+      <p id="modal-date" style="color: var(--secondary-color); font-weight: bold; margin-bottom: 1rem;"></p>
+      <div id="modal-text" class="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Blog de Síntesis Académica - Acceso Público</p>
+  </footer>
+
+  <script>
+    const semanaData = [
+      {
+        semana: "Semana 1",
+        fecha: "28 jul - 3 ago",
+        titulo: "Introducción a la IA / Definiciones de la IA",
+        resumen: "Exploración de los conceptos fundamentales de la Inteligencia Artificial, distinguiendo entre sistemas que piensan/actúan como humanos versus aquellos que actúan/piensan racionalmente.",
+        FullContent: `
+          <p>La <strong>Inteligencia Artificial (IA)</strong> es una rama de las ciencias de la computación dedicada a crear sistemas capaces de realizar tareas que normalmente requieren inteligencia humana.</p>
+          <br>
+          <p>Se divide principalmente en cuatro enfoques conceptuales según Russell & Norvig:</p>
+          <ul>
+            <li><strong>Sistemas que piensan como humanos:</strong> Modelos inspirados en el funcionamiento del cerebro y la ciencia cognitiva.</li>
+            <li><strong>Sistemas que actúan como humanos:</strong> Diseñados para superar la <em>Prueba de Turing</em>, empleando procesamiento de lenguaje natural, representación del conocimiento y aprendizaje automático.</li>
+            <li><strong>Sistemas que piensan racionalmente:</strong> Basados en la lógica formal y el razonamiento deductivo sin errores (leyes del pensamiento).</li>
+            <li><strong>Sistemas que actúan racionalmente:</strong> Agentes inteligentes programados para percibir su entorno y tomar las acciones que maximicen sus posibilidades de éxito.</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/xaedg9wijkucnrzi83hri/Gemini_Generated_Image_iu32cciu32cciu32.jpg?rlkey=p2g9eh6xeqdrhclxm7vdss7gg&st=u2aq007r&dl=1"
+      },
+      {
+        semana: "Semana 2",
+        fecha: "4 ago - 10 ago",
+        titulo: "Evolución histórica de la IA / Nuevo enfoque",
+        resumen: "Línea del tiempo desde los primeros test de Turing hasta el resurgimiento actual impulsado por el Machine Learning, redes neuronales y el procesamiento de grandes volúmenes de datos.",
+        FullContent: `
+          <p><strong>Línea del Tiempo y la Revolución de los Datos:</strong></p>
+          <ul>
+            <li><strong>1950:</strong> Alan Turing propone el Test de Turing para evaluar si una máquina exhibe comportamiento inteligente.</li>
+            <li><strong>1956:</strong> Conferencia de Dartmouth; nace oficialmente el término Inteligencia Artificial acuñado por John McCarthy y sus colegas.</li>
+            <li><strong>Años 70 y 80 (Inviernos de la IA):</strong> Periodos de reducción de fondos e interés debido a la falta de poder de cómputo y limitaciones metodológicas.</li>
+            <li><strong>Años 90 en adelante:</strong> Resurgimiento de los Sistemas Expertos y avance del aprendizaje estadístico.</li>
+            <li><strong>Nuevo Enfoque (Era Actual):</strong> Transición del diseño de reglas manuales al Deep Learning y Machine Learning impulsado por la disponibilidad masiva de datos (Big Data) y el uso de GPUs para cómputo paralelo.</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/nhjcpewjmybgyhkzrb4yu/Gemini_Generated_Image_zeh7h9zeh7h9zeh7.jpg?rlkey=vrpurp9m5kjzdtzmruh87nsv4&st=njsmbvuu&dl=1"
+      },
+      {
+        semana: "Semana 3",
+        fecha: "11 ago - 17 ago",
+        titulo: "Áreas de estudio y aplicaciones / Importancia",
+        resumen: "Análisis del impacto de la IA en la sociedad: visión por computadora, procesamiento de lenguaje natural, robótica y la relevancia ética de su implementación industrial.",
+        FullContent: `
+          <p>La IA abarca múltiples campos interdisciplinarios orientados a la automatización de procesos complejos:</p>
+          <ul>
+            <li><strong>Visión por Computadora:</strong> Captura, procesamiento y análisis de imágenes del mundo real para la identificación de patrones, diagnóstico médico y navegación autónoma.</li>
+            <li><strong>Procesamiento del Lenguaje Natural (PLN):</strong> Modelado del lenguaje humano para traducción automática, análisis de sentimientos y asistentes virtuales.</li>
+            <li><strong>Robótica:</strong> Desarrollo de agentes físicos con capacidad de percepción y movimiento para la automatización industrial y tareas de alto riesgo.</li>
+            <li><strong>Importancia Ética e Industrial:</strong> Optimiza recursos y reduce fallos en entornos productivos, pero plantea desafíos normativos en torno a la privacidad, sesgos algorítmicos y el futuro laboral.</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/artnswc9cakcf2pwm3dz0/semana-3.jpg?rlkey=yplo6s182mqwpw7q6tub207hr&st=6sprpaik&dl=1"
+      },
+      {
+        semana: "Semana 4",
+        fecha: "18 ago - 24 ago",
+        titulo: "Lógica proposicional / Enunciados simples y compuestos",
+        resumen: "Bases teóricas de la representación del conocimiento mediante proposiciones. Diferenciación entre enunciados atómicos y combinados para formalizar el razonamiento.",
+        FullContent: `
+          <p>La lógica proposicional es la base para estructurar enunciados declarativos a los que se les puede asignar un único valor de verdad (Verdadero o Falso).</p>
+          <br>
+          <p><strong>Estructura Formal:</strong></p>
+          <ul>
+            <li><strong>Enunciados Simples (Atómicos):</strong> Expresan una sola afirmación independiente sin operadores lógicos. Ej: <em>P = "El servidor está activo"</em>.</li>
+            <li><strong>Enunciados Compuestos (Moleculares):</strong> Agrupan dos o más proposiciones simples unidas por conectivos. Ej: <em>P ∧ Q = "El servidor está activo Y la red responde"</em>.</li>
+            <li><strong>Formalización:</strong> Permite traducir enunciados complejos del lenguaje natural a variables simbólicas para validar argumentos lógicos sin ambigüedad.</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/ip5jb481bkni8gs52a12e/semana-4.jpg?rlkey=bs2t985wcdatt0yaq9lu2esbv&st=2eksgzmi&dl=1"
+      },
+      {
+        semana: "Semana 5",
+        fecha: "25 ago - 31 ago",
+        titulo: "Conectivos lógicos / Tablas de verdad",
+        resumen: "Modelado formal mediante operadores (AND, OR, NOT, Implicación) y construcción de tablas de verdad para evaluar la validez (tautología, contradicción) de las proposiciones.",
+        FullContent: `
+          <p>Los conectivos lógicos evalúan y combinan los valores de verdad de proposiciones individuales para determinar el valor total de una expresión.</p>
+          <br>
+          <p><strong>Operadores Fundamentales:</strong></p>
+          <ul>
+            <li><strong>Conjunción (∧):</strong> Verdadero únicamente si ambas proposiciones lo son.</li>
+            <li><strong>Disyunción (∨):</strong> Verdadero si al menos una de las partes es verdadera.</li>
+            <li><strong>Implicación (⇒):</strong> Falso únicamente cuando el antecedente es verdadero y el consecuente falso.</li>
+            <li><strong>Bicondicional (⇔):</strong> Verdadero si ambas proposiciones comparten el mismo valor de verdad.</li>
+          </ul>
+          <br>
+          <p><strong>Evaluación mediante Tablas de Verdad:</strong></p>
+          <ul>
+            <li><strong>Tautología:</strong> La fórmula resulta verdadera en todas las combinaciones posibles.</li>
+            <li><strong>Contradicción:</strong> La fórmula resulta falsa en todos los escenarios.</li>
+            <li><strong>Contingencia:</strong> Presenta combinaciones de valores verdaderos y falsos.</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/yjc4v9mgilgh6sovav12f/semana-5.jpg?rlkey=n90fpcrzab9rutmvai3578r5b&st=ltssqgta&dl=1"
+      },
+      {
+        semana: "Semana 6",
+        fecha: "1 sep - 7 sep",
+        titulo: "Lógica de predicados",
+        resumen: "Ampliación de la lógica formal incorporando variables, constantes, predicados y cuantificadores (existencial y universal) para describir relaciones de objetos con mayor detalle.",
+        FullContent: `
+          <p>La lógica de predicados supera las limitaciones de la lógica proposicional permitiendo analizar la estructura interna de los enunciados y las relaciones entre objetos del dominio.</p>
+          <br>
+          <p><strong>Elementos de la Lógica de Primer Orden:</strong></p>
+          <ul>
+            <li><strong>Constantes:</strong> Identifican elementos concretos del universo de discurso (ej. <em>a, b, Juan</em>).</li>
+            <li><strong>Variables:</strong> Representan elementos indeterminados del dominio (ej. <em>x, y</em>).</li>
+            <li><strong>Predicados:</strong> Atribuyen propiedades a los objetos o relaciones entre ellos. Ej: <em>Persona(x)</em> o <em>HermanoOf(x, y)</em>.</li>
+            <li><strong>Cuantificador Universal (∀x):</strong> Expresa que la propiedad aplica para todos los elementos del universo ("Para todo x").</li>
+            <li><strong>Cuantificador Existencial (∃x):</strong> Señala que existe al menos un elemento que satisface la condición ("Existe un x").</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/ob3g6ehuwaoa65eg20gt3/semana-6.jpg?rlkey=y58719mjpk17d9p1xsliajkhq&st=559880rc&dl=1"
+      },
+      {
+        semana: "Semana 7",
+        fecha: "8 sep - 14 sep",
+        titulo: "FBF, unificación, inferencia y razonamiento",
+        resumen: "Estudio de las Fórmulas Bien Formadas (FBF), reglas de inferencia para deducción lógica y el algoritmo de unificación para emparejar expresiones lógicas.",
+        FullContent: `
+          <p>Mecanismos sintácticos y semánticos para automatizar el razonamiento lógico en inteligencia artificial:</p>
+          <ul>
+            <li><strong>Fórmulas Bien Formadas (FBF):</strong> Expresiones sintácticamente válidas construidas bajo las reglas estrictas del lenguaje formal.</li>
+            <li><strong>Algoritmo de Unificación:</strong> Proceso informático que empareja expresiones lógicas sustituyendo variables por términos equivalentes para permitir la resolución.</li>
+            <li><strong>Reglas de Inferencia:</strong> Métodos mecánicos (como <em>Modus Ponens</em> o <em>Modus Tollens</em>) para derivar conclusiones válidas a partir de premisas verdaderas.</li>
+            <li><strong>Sistemas de Razonamiento:</strong> Deducción automatizada para la demostración de teoremas y la toma de decisiones basada en bases de conocimiento.</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/rlj0qfjnj7fu1b3tmvnm2/Semana.jpg?rlkey=sfj1kqjbu62wh1w64bc235gqw&st=1jj851iq&dl=1"
+      },
+      {
+        semana: "Semana 8",
+        fecha: "15 sep - 21 sep",
+        titulo: "Reglas de producción",
+        resumen: "Sistemas basados en reglas (Hechos + Reglas IF-THEN). Métodos de resolución mediante encadenamiento hacia adelante (data-driven) y hacia atrás (goal-driven).",
+        FullContent: `
+          <p>Las reglas de producción forman la base del conocimiento en los Sistemas Expertos, representando el saber operativo mediante condicionales <strong>SI [Condición/Hecho] ENTONCES [Acción/Conclusión]</strong>.</p>
+          <br>
+          <p><strong>Estrategias de Encadenamiento (Motor de Inferencia):</strong></p>
+          <ul>
+            <li><strong>Encadenamiento Hacia Adelante (Data-driven):</strong> Comienza a partir de los hechos conocidos recopilados en la base de datos y aplica las reglas para derivar nuevas conclusiones o descubrir nuevos hechos.</li>
+            <li><strong>Encadenamiento Hacia Atrás (Goal-driven):</strong> Parte de una hipótesis o meta objetivo y busca recursivamente en las reglas cuáles hechos justifican la validez de esa meta.</li>
+            <li><strong>Memoria de Trabajo:</strong> Contenedor donde se almacenan los hechos activos verificados durante el ciclo de inferencia.</li>
+          </ul>
+        `,
+        imagen: "https://www.dropbox.com/scl/fi/ds68p787gek31pdxci6jb/semana-8.jpg?rlkey=mcmue355dar6rk73thh34wfeb&st=ieneyxim&dl=1"
+      }
+    ];
+
+    const container = document.getElementById('cards-container');
+
+    semanaData.forEach((data, index) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${data.imagen}" alt="${data.titulo}" class="card-img">
+        <div class="card-content">
+          <span class="tag">${data.semana} (${data.fecha})</span>
+          <h3 class="card-title">${data.titulo}</h3>
+          <p class="card-summary">${data.resumen}</p>
+          <button class="btn" onclick="openModal(${index})">Leer más</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('close-modal');
+
+    function openModal(index) {
+      const item = semanaData[index];
+      document.getElementById('modal-title').innerText = item.titulo;
+      document.getElementById('modal-date').innerText = `${item.semana} — ${item.fecha}`;
+      document.getElementById('modal-text').innerHTML = item.FullContent;
+      modal.style.display = 'flex';
+    }
+
+    closeModal.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+  </script>
+</body>
+</html>
